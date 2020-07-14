@@ -6,7 +6,6 @@
 const fs = require("fs");
 let notesData = [];
 
-
 //=============================================
 // ROUTING
 //=============================================
@@ -39,7 +38,8 @@ module.exports = function(app) {
             if (err) throw err;
         })
         // Parse the notesData string back to an array so that it can be sent back to the client:
-        res.json(JSON.parse(notesData))
+        res.json(JSON.parse(notesData));
+        console.log("Note Created!")
 
     });
 
@@ -51,13 +51,13 @@ module.exports = function(app) {
     fs.readFile("./db/db.json", "utf8", function(err, data) {
       if (err) throw err;
 
-      const allNotes = JSON.parse(data);
-      const newAllNotes = allNotes.filter(note => note.id != noteId);
+      notesData = JSON.parse(data);
+      notesData = notesData.filter(note => note.id != noteId);
 
-      fs.writeFile("./db/db.json", JSON.stringify(newAllNotes), function(err) {
+      fs.writeFile("./db/db.json", JSON.stringify(notesData), function(err) {
         if (err) throw err;
         res.sendStatus(200);
-        console.log("Note deleted!")
+        console.log("Note deleted!");
       });
     });
   });

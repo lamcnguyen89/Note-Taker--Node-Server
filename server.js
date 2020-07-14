@@ -2,7 +2,7 @@
 // SETUP AND OBTAIN DEPENDENCIES
 //=============================================
 
-var express = require("express")
+const express = require("express")
 
 //=============================================
 // CREATE AND CONFIGURE SERVER
@@ -10,16 +10,18 @@ var express = require("express")
 //=============================================
 
 // Create the "express" server:
-var app = express();
+const app = express();
 
 // Sets the initial Port that the server will listen through for client-side requests.
 // process.env.PORT is a command that means that the server will listen to whatever number is in the environmental variable PORT. 
-var PORT = process.env.PORT || 3000
+const PORT = process.env.PORT || 3000
 
 // Sets up the Express app to handle data parsing using middleware.
 // json and urlencoded are both part of bodyParse in Express: https://github.com/expressjs/body-parser
 app.use(express.urlencoded({ extended: true}));
 app.use(express.json()); 
+//
+app.use(express.static("public"));
 
 
 //=============================================

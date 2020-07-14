@@ -30,4 +30,6 @@ These are the functional pieces of the program:
 
 The Unlicense
 
+## Deployed Application
 
+View an example of the deployed application on [Heroku](https://thawing-retreat-70227.herokuapp.com/).

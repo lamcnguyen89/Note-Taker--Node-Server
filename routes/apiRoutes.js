@@ -6,6 +6,7 @@
 const path = require("path");
 const fs = require("fs");
 let notesData = [];
+let filteredData = [];
 
 //=============================================
 // ROUTING
@@ -43,25 +44,24 @@ module.exports = function(app) {
 
     });
 
-    // DELETE `/api/notes/:id` - Should receive a query parameter containing the id of a note to delete. 
-    app.delete("/api/notes:id", function(req, res){
-        // Read the JSON file:
-        notesData = fs.readFileSync("db/db.json", "utf8");
-        // Parse the JSON data to get an array of objects that can be changed by JavaScript:
-        notesData = JSON.parse(notesData);
-        // Delete the specified note object from the notesData array:
-        notesData = notesData.filter(function(note) {
-            return note.id != req.params.id;
-          });
-        // Stringify the array that contains the notes so that it can be sent back to the JSON file. 
-        notesData = JSON.stringify(notesData);
-        // Write the new array over the old array in the db.json file
-        fs.writeFile("/db/db.json", notesData, "utf8", function(err) {
-            if (err) throw err;
-        })
-        // Parse the notesData string back to an array so that it can be sent back to the client:
-        res.json(JSON.parse(notesData))
+   // DELETE `/api/notes/:id` - Should receive a query parameter containing the id of a note to delete. 
+   app.delete("/api/notes/:id", (req, res) => {
+
+    let noteId = req.params.id;
+
+    fs.readFile("./db/db.json", "utf8", (err, data) => {
+      if (err) throw err;
+
+      const allNotes = JSON.parse(data);
+      const newAllNotes = allNotes.filter(note => note.id != noteId);
+
+      fs.writeFile("./db/db.json", JSON.stringify(newAllNotes, null, 2), err => {
+        if (err) throw err;
+        res.sendStatus(200);
+        console.log("Note deleted!")
+      });
     });
+  });
 
 };
 

@@ -1,1 +1,27 @@
-[{"title":"Let them eat cake","text":"Eat birthday cake my sister made.","id":0},{"title":"Go Exercise","text":"Upper body","id":1},{"title":"Go fix car","text":"fix rattling","id":2}]
+[
+  {
+    "title": "tester tester",
+    "text": "testee testee",
+    "id": 1
+  },
+  {
+    "title": "Go to the Gym",
+    "text": "Do upper body and meditate",
+    "id": 2
+  },
+  {
+    "title": "Go walk around in the dark",
+    "text": "Think about my life",
+    "id": 3
+  },
+  {
+    "title": "What the heck am I doing?",
+    "text": "Figure out next steps in life\n",
+    "id": 4
+  },
+  {
+    "title": "Go to sleep",
+    "text": "Probably not happening",
+    "id": 5
+  }
+]

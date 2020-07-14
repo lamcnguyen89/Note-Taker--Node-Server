@@ -6,7 +6,7 @@
 const path = require("path");
 const fs = require("fs");
 let notesData = [];
-let filteredData = [];
+
 
 //=============================================
 // ROUTING
@@ -45,17 +45,17 @@ module.exports = function(app) {
     });
 
    // DELETE `/api/notes/:id` - Should receive a query parameter containing the id of a note to delete. 
-   app.delete("/api/notes/:id", (req, res) => {
+   app.delete("/api/notes/:id", function(req, res) {
 
     let noteId = req.params.id;
 
-    fs.readFile("./db/db.json", "utf8", (err, data) => {
+    fs.readFile("./db/db.json", "utf8", function(err, data) {
       if (err) throw err;
 
       const allNotes = JSON.parse(data);
       const newAllNotes = allNotes.filter(note => note.id != noteId);
 
-      fs.writeFile("./db/db.json", JSON.stringify(newAllNotes, null, 2), err => {
+      fs.writeFile("./db/db.json", JSON.stringify(newAllNotes), function(err) {
         if (err) throw err;
         res.sendStatus(200);
         console.log("Note deleted!")

@@ -3,6 +3,7 @@
 //=============================================
 
 var express = require("express")
+
 //=============================================
 // CREATE AND CONFIGURE SERVER
 // Set up the basic properties of the server
@@ -26,13 +27,13 @@ app.use(express.json());
 // Creates route files that directs the server to take certain actions when users visit or request data from various URLs 
 //=============================================
 
-// HTML Routes:
-require("./routes/htmlRoutes")
-
 // API Routes:
-require("./routes/apiRoutes")
+require("./routes/apiRoutes")(app);
 
-    
+// HTML Routes:
+require("./routes/htmlRoutes")(app);
+
+
 
 //=============================================
 // START LISTENER

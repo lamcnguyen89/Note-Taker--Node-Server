@@ -3,7 +3,6 @@
 // include the path module to allow the JS file to move to the correct path to the specified file
 //=============================================
 
-const path = require("path");
 const fs = require("fs");
 let notesData = [];
 
